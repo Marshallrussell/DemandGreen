@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenDemandex</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* Basic styles to improve appearance */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 1rem;
+        }
+        #search {
+            margin-bottom: 1rem;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GreenDemandex</h1>
+        <p>Find sustainable gigs and opportunities</p>
+    </header>
+
+    <!-- Link to the JavaScript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <main>
+        <section id="search">
+            <input type="text" id="search-input" placeholder="Search for gigs..." />
+            <button id="search-button">Search</button>
+        </section>
+        <section id="results">
+            <h2>Available Gigs</h2>
+            <ul id="results-list"></ul> <!-- List to display results -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 GreenDemandex. All Rights Reserved.</p>
+    </footer>
+
+    <script type="text/python">
+        from browser import document, ajax, alert
+
+        def fetch_gigs():
+            def on_complete(req):
+                if req.status == 200:
+                    gigs = req.json
+                    results_list = document["results-list"]
+                    results_list.clear()
+                    for gig in gigs:
+                        item = document.createElement("li")
+                        item.text = f"{gig['title']} - ${gig['price']}"
+                        results_list.appendChild(item)
+                else:
+                    alert(f"Error fetching gigs: {req.status_text}")
+
+            req = ajax.Ajax()
+            req.bind("complete", on_complete)
+            req.open("GET", "http://127.0.0.1:5000/gigs", True)
+            req.send()
+
+        # Bind the fetch function to the button
+        document["search-button"].bind("click", lambda e: fetch_gigs())
+    </script>
+</body>
+</html>
