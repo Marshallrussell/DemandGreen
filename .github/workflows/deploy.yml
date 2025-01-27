@@ -23,12 +23,12 @@ jobs:
           node-version: '16'
 
       - name: Setup PostgreSQL
-        uses: AkhileshNS/setup-postgres@v1
+        uses: postgresql-action/setup-postgresql@v2
         with:
-          postgres-version: '13'
-          postgres-db: 'test_db'
-          postgres-user: 'test_user'
-          postgres-password: 'test_password'
+          postgresql-version: '13'
+          postgresql-db: 'test_db'
+          postgresql-user: 'test_user'
+          postgresql-password: 'test_password'
 
   backend:
     name: Backend Tests
