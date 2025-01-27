@@ -23,12 +23,12 @@ jobs:
           node-version: '16'
 
       - name: Setup PostgreSQL
-        uses: postgresql-action/setup-postgresql@v2
+        uses: harmon758/postgresql-action@v1.1.0
         with:
-          postgresql-version: '13'
-          postgresql-db: 'test_db'
-          postgresql-user: 'test_user'
-          postgresql-password: 'test_password'
+          postgresql version: '13'
+          postgresql db: 'test_db'
+          postgresql user: 'test_user'
+          postgresql password: 'test_password'
 
   backend:
     name: Backend Tests
@@ -84,12 +84,12 @@ jobs:
         working-directory: frontend
 
       - name: Set up PostgreSQL
-        uses: postgresql-action/setup-postgresql@v2
+        uses: harmon758/postgresql-action@v1.1.0
         with:
-          postgresql-version: '12'
-          postgresql-db: 'test_db'
-          postgresql-user: 'test_user'
-          postgresql-password: 'test_password'
+          postgresql version: '12'
+          postgresql db: 'test_db'
+          postgresql user: 'test_user'
+          postgresql password: 'test_password'
 
       - name: Run Frontend Tests
         run: |
