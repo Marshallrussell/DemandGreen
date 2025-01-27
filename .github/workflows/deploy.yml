@@ -83,14 +83,6 @@ jobs:
         run: chmod +x node_modules/.bin/jest
         working-directory: frontend
 
-      - name: Set up PostgreSQL
-        uses: postgresql-action/setup-postgresql@v2
-        with:
-          postgresql-version: '12'
-          postgresql-db: 'test_db'
-          postgresql-user: 'test_user'
-          postgresql-password: 'test_password'
-
       - name: Run Frontend Tests
         run: |
           cd frontend
