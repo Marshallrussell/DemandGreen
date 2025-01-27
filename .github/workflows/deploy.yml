@@ -23,7 +23,7 @@ jobs:
           node-version: '16'
 
       - name: Setup PostgreSQL
-        uses: tmaier/postgresql-action@v2
+        uses: harmon758/postgresql-action@v2.2.0
         with:
           postgresql version: '13'
           postgresql db: 'test_db'
@@ -84,7 +84,7 @@ jobs:
         working-directory: frontend
 
       - name: Set up PostgreSQL
-        uses: tmaier/postgresql-action@v2
+        uses: harmon758/postgresql-action@v2.2.0
         with:
           postgresql version: '13'
           postgresql db: 'test_db'
