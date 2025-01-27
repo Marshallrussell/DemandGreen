@@ -79,6 +79,10 @@ jobs:
           cd frontend
           npm install
 
+      - name: Update jest permissions
+        run: chmod +x node_modules/.bin/jest
+        working-directory: frontend
+
       - name: Run Frontend Tests
         run: |
           cd frontend
